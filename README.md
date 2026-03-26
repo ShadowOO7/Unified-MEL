@@ -1,4 +1,4 @@
-# Unified MEL: A Unified Framework for Multimodal Entity Linking with Large Language Models
+# Unified MEL: A Unified Framework for Multimodal Entity Linking with LLMs and MLLMs
 
 This repository is the implementation for the paper titled "Unified MEL: A Unified Framework for Multimodal Entity Linking with Large Language Models".
 
