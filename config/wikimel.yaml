@@ -1,0 +1,97 @@
+run_name: "WikiMEL"
+seed: 42
+
+ent:
+  model_dir: "/home/kmpooja/UniMEL/models/Meta-Llama-3-8B-Instruct/Meta-Llama-3-8B-Instruct"
+
+  train_data_dir: "/home/kmpooja/UniMEL/WikiMEL/kb_entity_desc.json"
+  train_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+
+  # dummy but required by code
+  val_data_dir: "/home/kmpooja/UniMEL/WikiMEL/kb_entity_desc.json"
+  val_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+
+  test_data_dir: "/home/kmpooja/UniMEL/WikiMEL/kb_entity_desc.json"
+  test_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+
+
+mention:
+  model_dir_img: "/home/kmpooja/UniMEL/models/llava-v1.6-mistral-7b-hf/llava-v1.6-mistral-7b-hf"
+
+  train_mentions_dir: "/home/kmpooja/UniMEL/WikiMEL/WIKIMEL_10cands_train.json"
+  train_save_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_des_llava.json"
+
+  val_mentions_dir: "/home/kmpooja/UniMEL/WikiMEL/WIKIMEL_10cands_valid.json"
+  val_save_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_des_llava.json"
+
+  test_mentions_dir: "/home/kmpooja/UniMEL/WikiMEL/WIKIMEL_10cands_test.json"
+  test_save_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_des_llava.json"
+
+  train_kb_img_folder: "/home/kmpooja/UniMEL/WikiMEL/mention_image/"
+  val_kb_img_folder: "/home/kmpooja/UniMEL/WikiMEL/mention_image/"
+  test_kb_img_folder: "/home/kmpooja/UniMEL/WikiMEL/mention_image/"
+
+  model_dir_text: "/home/kmpooja/UniMEL/models/Meta-Llama-3-8B-Instruct/Meta-Llama-3-8B-Instruct"
+
+  train_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_des_llava.json"
+  train_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_des_llava_llama.json"
+
+  val_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_des_llava.json"
+  val_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_des_llava_llama.json"
+
+  test_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_des_llava.json"
+  test_output_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_des_llava_llama.json"
+
+
+embed:
+  max_length: 4096
+  emb_model_dir: "/home/kmpooja/UniMEL/models/SFR-Embedding-Mistral/SFR-Embedding-Mistral"
+
+  train_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  train_embed_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+
+  # required by code, reuse train
+  val_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  val_embed_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+
+  test_data_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  test_embed_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+
+top:
+  K: 5
+  max_length: 4096
+  model_dir: "/home/kmpooja/UniMEL/models/SFR-Embedding-Mistral/SFR-Embedding-Mistral"
+
+  train_database_emb: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+  val_database_emb: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+  test_database_emb: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_embedding.json"
+
+  train_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  train_mention_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_des_llava_llama.json"
+  train_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_topK.json"
+
+  val_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  val_mention_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_des_llava_llama.json"
+  val_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_topK.json"
+
+  test_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  test_mention_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_des_llava_llama.json"
+  test_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_topK.json"
+
+
+infer:
+  max_length: 2048
+  model_id: "qwen/Qwen2-7B-Instruct"
+  ckpt_id: null
+
+  train_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  train_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_train_topK.json"
+  train_res_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_res_train.json"
+
+  val_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  val_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_valid_topK.json"
+  val_res_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_res_valid.json"
+
+  test_database_sum: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_entity2sum_train.json"
+  test_mention_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_test_topK.json"
+  test_res_topK_dir: "/home/kmpooja/UniMEL/WikiMEL/results/wikimel_res_test.json"
